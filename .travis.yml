@@ -8,6 +8,13 @@ matrix:
   include:
   - os: linux
     env: COMPILER=g++-4.9
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-4.9
+        - libudev-dev
     cache:
       ccache: true
       directories:
@@ -15,40 +22,28 @@ matrix:
 
   - os: linux
     env: COMPILER=g++-6
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-6
+        - libudev-dev
     cache:
       ccache: true
       directories:
       - $HOME/SFML-2.4.0_LINUX
 
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.9
-    - g++-6
-    - libfreetype6-dev
-    - libjpeg-dev
-    - libx11-dev
-    - libxrandr-dev
-    - libxcb1-dev
-    - libx11-xcb-dev
-    - libxcb-randr0-dev
-    - libxcb-image0-dev
-    - libgl1-mesa-dev
-    - libflac-dev
-    - libogg-dev
-    - libvorbis-dev
-    - libvorbisenc2
-    - libvorbisfile3
-    - libopenal-dev
-    - libpthread-stubs0-dev
-    - libglew-dev
-    - libgpgme11-dev
-    - libsndfile1-dev
-    - libudev-dev
-    - cmake
-    - cmake-data
+  - os: osx
+    cache:
+      ccache: true
+      directories:
+      - $HOME/SFML_OSX
+
+before_install:
+  # Install ccache on osx
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install ccache; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export PATH="/usr/local/opt/ccache/libexec:$PATH"; fi
 
 script:
   - >
