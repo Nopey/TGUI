@@ -15,6 +15,7 @@ matrix:
         packages:
         - g++-4.9
         - libudev-dev
+        - libxrandr-dev
     cache:
       ccache: true
       directories:
@@ -29,6 +30,9 @@ matrix:
         packages:
         - g++-6
         - libudev-dev
+        - libx11-xcb-dev
+        - libxcb-image0-dev
+        - libxcb-randr0-dev
     cache:
       ccache: true
       directories:
