@@ -8,12 +8,6 @@ matrix:
   include:
   - os: linux
     env: COMPILER=g++-4.9
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-4.9
     cache:
       ccache: true
       directories:
@@ -21,12 +15,6 @@ matrix:
 
   - os: linux
     env: COMPILER=g++-6
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-6
     cache:
       ccache: true
       directories:
@@ -34,7 +22,11 @@ matrix:
 
 addons:
   apt:
+    sources:
+    - ubuntu-toolchain-r-test
     packages:
+    - g++-4.9
+    - g++-6
     - libfreetype6-dev
     - libjpeg-dev
     - libx11-dev
