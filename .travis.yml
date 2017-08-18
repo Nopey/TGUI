@@ -7,35 +7,34 @@ git:
 matrix:
   include:
   - os: linux
-    compiler: g++-4.9
     env: COMPILER=g++-4.9
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-4.9
     cache:
       ccache: true
       directories:
       - $HOME/SFML_LINUX
 
   - os: linux
-    compiler: g++-6
     env: COMPILER=g++-6
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-6
     cache:
       ccache: true
       directories:
       - $HOME/SFML-2.4.0_LINUX
 
-  - os: osx
-    cache:
-      directories:
-      - $HOME/SFML_OSX
-
 addons:
   apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    - george-edison55-precise-backports
     packages:
-    - g++-4.9
-    - g++-6
-    - ccache
     - libfreetype6-dev
     - libjpeg-dev
     - libx11-dev
